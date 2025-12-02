@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_weed_removal"
+        android:title="Weed Removal"/>
+    <item
+        android:id="@+id/nav_spraying"
+        android:title="Spraying"/>
+    <item
+        android:id="@+id/nav_fertilizers"
+        android:title="Fertilizers"/>
+    <item
+        android:id="@+id/nav_routing"
+        android:title="Routing"/>
+    <item
+        android:id="@+id/nav_planting"
+        android:title="Planting"/>
+    <item
+        android:id="@+id/nav_harvesting"
+        android:title="Harvesting"/>
+    <item
+        android:id="@+id/nav_seeding"
+        android:title="Seeding"/>
+</menu>

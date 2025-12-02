@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/bluetoothStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checking..."
+        android:textSize="18sp"
+        android:layout_marginBottom="30dp"/>
+
+    <Button
+        android:id="@+id/forwardBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Move Forward" />
+
+    <Button
+        android:id="@+id/backwardBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Move Backward"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/stopBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Stop Hub"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
