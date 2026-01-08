@@ -161,7 +161,7 @@
             android:id="@+id/offHubMotor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="START MOVING"
+            android:text="STOP MOVING"
             android:textSize="20sp"/>
     </LinearLayout>
 
