@@ -34,4 +34,19 @@
         android:layout_height="wrap_content"
         android:text="Stop Hub"
         android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/moveUpBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Move up"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/moveDownBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Move Down"
+        android:layout_marginTop="20dp"/>
+
 </LinearLayout>

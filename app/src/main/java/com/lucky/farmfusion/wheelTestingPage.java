@@ -2,13 +2,15 @@ package com.lucky.farmfusion;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.MotionEvent;
 
 public class wheelTestingPage extends AppCompatActivity {
 
-    Button forwardBtn, backwardBtn, stopBtn;
+    Button forwardBtn, backwardBtn, stopBtn, moveUpBtn, moveDownBtn;
     TextView bluetoothStatus;
 
     @Override
@@ -20,6 +22,8 @@ public class wheelTestingPage extends AppCompatActivity {
         backwardBtn = findViewById(R.id.backwardBtn);
         stopBtn = findViewById(R.id.stopBtn);
         bluetoothStatus = findViewById(R.id.bluetoothStatus);
+        moveDownBtn=findViewById(R.id.moveDownBtn);
+        moveUpBtn=findViewById(R.id.moveUpBtn);
 
         // Show connection status
         if (BluetoothConnectionManager.getInstance().isConnected()) {
@@ -56,6 +60,50 @@ public class wheelTestingPage extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Not connected to ESP32", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        // CLICK & HOLD FOR moveUpBtn
+        moveUpBtn.setOnTouchListener((v, event) -> {
+            if (!BluetoothConnectionManager.getInstance().isConnected()) {
+                Toast.makeText(this, "Not connected to ESP32", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    BluetoothConnectionManager.getInstance().sendData("MOVE_UP_HYDRO");
+                    Toast.makeText(this, "Moving UP...", Toast.LENGTH_SHORT).show();
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    BluetoothConnectionManager.getInstance().sendData("STOP_HYDRO");
+                    Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            return true;
+        });
+
+        // CLICK & HOLD FOR moveDownBtn
+        moveDownBtn.setOnTouchListener((v, event) -> {
+            if (!BluetoothConnectionManager.getInstance().isConnected()) {
+                Toast.makeText(this, "Not connected to ESP32", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    BluetoothConnectionManager.getInstance().sendData("MOVE_DOWN_HYDRO");
+                    Toast.makeText(this, "Moving DOWN...", Toast.LENGTH_SHORT).show();
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    BluetoothConnectionManager.getInstance().sendData("STOP_HYDRO");
+                    Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            return true;
         });
     }
 }
