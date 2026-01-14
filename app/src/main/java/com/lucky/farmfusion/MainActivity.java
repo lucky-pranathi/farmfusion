@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button testingBtn;
 
     // Bluetooth
-    private static final String ESP32_MAC_ADDRESS = "80:F3:DA:64:41:F2"; // <-- Replace with your ESP32's MAC
+    private static final String ESP32_MAC_ADDRESS = "00:4B:12:EF:2C:56"; // <-- Replace with your ESP32's MAC
     private static final UUID ESP32_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Standard SPP UUID
 
     private BluetoothAdapter bluetoothAdapter;
