@@ -1,6 +1,8 @@
 package com.lucky.farmfusion;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +15,7 @@ import android.view.MotionEvent;
 
 public class spraying extends AppCompatActivity {
 
-    Button forwardHubBtn, backHubMotor, sprayOnBtn, sprayOffBtn, activateSpray, deactivateSpray;
+    Button forwardHubBtn, backHubMotor, sprayOnBtn, sprayOffBtn, activateSpray, deactivateSpray,refreshBtn;
     ImageButton rotateLeftImg, rotateRightImg;
     TextView bluetoothTxt, spraySpeedValue, hubSpeedValue;
     SeekBar spraySpeedSlider, hubSpeedSlider;
@@ -25,6 +27,7 @@ public class spraying extends AppCompatActivity {
         setContentView(R.layout.activity_spraying);
 
         activateSpray = findViewById(R.id.activateSpray);
+        refreshBtn=findViewById(R.id.refreshBtn);
         deactivateSpray = findViewById(R.id.deactivateSpray);
         forwardHubBtn = findViewById(R.id.forwardHubBtn);
         backHubMotor = findViewById(R.id.backHubMotor);
@@ -140,9 +143,11 @@ public class spraying extends AppCompatActivity {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     sendData("FORWARD");
+                    Toast.makeText(this, "Forward sent", Toast.LENGTH_SHORT).show();
                     break;
                 case MotionEvent.ACTION_UP:
                     sendData("STOP");
+                    Toast.makeText(this, "Stop hub", Toast.LENGTH_SHORT).show();
                     break;
             }
             return true;
@@ -153,12 +158,22 @@ public class spraying extends AppCompatActivity {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     sendData("BACKWARD");
+                    Toast.makeText(this, "Reverse sent", Toast.LENGTH_SHORT).show();
                     break;
                 case MotionEvent.ACTION_UP:
                     sendData("STOP");
+                    Toast.makeText(this, "Stop hub", Toast.LENGTH_SHORT).show();
                     break;
             }
             return true;
+        });
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(spraying.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
         spraySpeedSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

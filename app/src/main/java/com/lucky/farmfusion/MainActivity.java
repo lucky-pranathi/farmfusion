@@ -24,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
     ImageButton weedRemoval, spraying, fertilizers, routing, planting, harvesting, seeding, rotateWheel;
 
     TextView bluetoothTxt;
-    Button testingBtn;
+    Button testingBtn,refreshBtn;
 
     // Bluetooth
-    private static final String ESP32_MAC_ADDRESS = "00:4B:12:EF:2C:56"; // <-- Replace with your ESP32's MAC
+//    private static final String ESP32_MAC_ADDRESS = "00:4B:12:EF:2C:56"; // <-- Replace with your ESP32's MAC
+    private static final String TARGET_DEVICE_NAME = "ESP32_MOTOR";
     private static final UUID ESP32_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Standard SPP UUID
 
     private BluetoothAdapter bluetoothAdapter;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bluetoothTxt=findViewById(R.id.bluetoothTxt);
+        refreshBtn=findViewById(R.id.refreshBtn);
         weedRemoval = findViewById(R.id.weedRemoval);
         spraying = findViewById(R.id.spraying);
         fertilizers = findViewById(R.id.fertilizers);
@@ -116,21 +118,53 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), wheelTestingPage.class));
             }
         });
+
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
+    // ------------------------------
+    // Find paired ESP32 by NAME
+    // ------------------------------
+    private BluetoothDevice findDeviceByName(String name) {
+        for (BluetoothDevice device : bluetoothAdapter.getBondedDevices()) {
+            if (device.getName() != null && device.getName().equals(name)) {
+                return device;
+            }
+        }
+        return null;
+    }
+
+    // ------------------------------
+    // Connect using name-based lookup
+    // ------------------------------
     private void connectToESP32() {
         new Thread(() -> {
             try {
-                BluetoothDevice device = bluetoothAdapter.getRemoteDevice(ESP32_MAC_ADDRESS);
+                BluetoothDevice device = findDeviceByName(TARGET_DEVICE_NAME);
+
+                if (device == null) {
+                    runOnUiThread(() ->
+                            Toast.makeText(MainActivity.this, "ESP_MOTOR not paired!", Toast.LENGTH_LONG).show()
+                    );
+                    return;
+                }
+
                 bluetoothSocket = device.createRfcommSocketToServiceRecord(ESP32_UUID);
                 bluetoothSocket.connect();
 
-                runOnUiThread(() ->
-                        Toast.makeText(MainActivity.this, "Connected to ESP32", Toast.LENGTH_SHORT).show()
-                );
-
-                // Save socket in Singleton for other pages
+                // IMPORTANT: Now this matches your BluetoothConnectionManager EXACTLY
                 BluetoothConnectionManager.getInstance().setSocket(bluetoothSocket);
+
+                runOnUiThread(() ->
+                        Toast.makeText(MainActivity.this, "Connected to ESP_MOTOR", Toast.LENGTH_SHORT).show()
+                );
 
             } catch (IOException e) {
                 runOnUiThread(() ->
