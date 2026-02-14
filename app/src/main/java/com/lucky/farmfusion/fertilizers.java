@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 public class fertilizers extends AppCompatActivity {
 
-    ImageButton hydroUpImg, hydroDownImg;
-    Button fertiOnBtn, fertiOffBtn, forwardHubBtn, backHubMotor, refreshBtn;
+    ImageButton rotateLeftImg,rotateRightImg,hydroUpImg, hydroDownImg,refreshBtn;
+    Button fertiOnBtn, fertiOffBtn, forwardHubBtn, backHubMotor;
     SeekBar hubSpeedSlider;
     TextView hubSpeedValue;
 
@@ -33,6 +33,8 @@ public class fertilizers extends AppCompatActivity {
         fertiOffBtn = findViewById(R.id.fertiOffBtn);
         forwardHubBtn = findViewById(R.id.forwardHubBtn);
         backHubMotor = findViewById(R.id.backHubMotor);
+        rotateRightImg=findViewById(R.id.rotateRightImg);
+        rotateLeftImg=findViewById(R.id.rotateLeftImg);
         refreshBtn = findViewById(R.id.refreshBtn);
 
         // Add press effect to all clickable items
@@ -126,6 +128,32 @@ public class fertilizers extends AppCompatActivity {
 
                 case MotionEvent.ACTION_UP:
                     sendData("STOP");
+                    break;
+            }
+            return true;
+        });
+
+        rotateLeftImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_90");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
+                    break;
+            }
+            return true;
+        });
+
+        rotateRightImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_0");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
                     break;
             }
             return true;

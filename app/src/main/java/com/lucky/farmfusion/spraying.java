@@ -15,8 +15,8 @@ import android.view.MotionEvent;
 
 public class spraying extends AppCompatActivity {
 
-    Button forwardHubBtn, backHubMotor, sprayOnBtn, sprayOffBtn, activateSpray, deactivateSpray,refreshBtn;
-    ImageButton rotateLeftImg, rotateRightImg;
+    Button forwardHubBtn, backHubMotor, sprayOnBtn, sprayOffBtn, activateSpray, deactivateSpray;
+    ImageButton rotateLeftImg, rotateRightImg,refreshBtn;
     TextView bluetoothTxt, spraySpeedValue, hubSpeedValue;
     SeekBar spraySpeedSlider, hubSpeedSlider;
     LinearLayout spraySpeedLayout, hubSpeedLayout;

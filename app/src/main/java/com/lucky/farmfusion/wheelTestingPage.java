@@ -14,11 +14,11 @@ import android.view.MotionEvent;
 
 public class wheelTestingPage extends AppCompatActivity {
 
-    Button refreshBtn,forwardHubBtn,backHubMotor;
+    Button forwardHubBtn,backHubMotor;
     TextView bluetoothStatus;
     SeekBar hubSpeedSlider;
     TextView hubSpeedValue;
-    ImageButton rotateLeftImg,rotateRightImg,mainHydroUpImg,mainHydroDownImg;
+    ImageButton rotateLeftImg,rotateRightImg,mainHydroUpImg,mainHydroDownImg,refreshBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +113,32 @@ public class wheelTestingPage extends AppCompatActivity {
 
                 case MotionEvent.ACTION_UP:
                     sendData("STOP");
+                    break;
+            }
+            return true;
+        });
+
+        rotateLeftImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_90");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
+                    break;
+            }
+            return true;
+        });
+
+        rotateRightImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_0");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
                     break;
             }
             return true;

@@ -23,13 +23,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end">
-                <Button
+                <ImageButton
                     android:id="@+id/refreshBtn"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\@"
-                    android:textSize="20sp"
-                    android:backgroundTint="@color/btnBack"/>
+                    android:src="@drawable/refresh_svgrepo_com"
+                    android:layout_gravity="end"
+                    android:backgroundTint="#EFDD07"/>
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView

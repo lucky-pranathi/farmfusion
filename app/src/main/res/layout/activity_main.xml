@@ -40,14 +40,13 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_weight="1" />
-                <Button
+                <ImageButton
                     android:id="@+id/refreshBtn"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/btnBack"
-                    android:text="@"
-                    android:layout_marginTop="20dp"
-                    android:textSize="20sp" />
+                    android:src="@drawable/refresh_svgrepo_com"
+                    android:layout_gravity="end"
+                    android:backgroundTint="#97CD61"/>
 
             </LinearLayout>
 

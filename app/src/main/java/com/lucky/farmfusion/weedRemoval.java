@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class weedRemoval extends AppCompatActivity {
-    ImageButton hydroUpImg, hydroDownImg;
-    Button weedOnBtn, weedOffBtn, forwardHubBtn, backHubMotor, refreshBtn;
+    ImageButton rotateLeftImg,rotateRightImg,hydroUpImg, hydroDownImg,refreshBtn;
+    Button weedOnBtn, weedOffBtn, forwardHubBtn, backHubMotor;
     SeekBar hubSpeedSlider;
     TextView hubSpeedValue;
 
@@ -28,10 +28,12 @@ public class weedRemoval extends AppCompatActivity {
         hubSpeedValue=findViewById(R.id.hubSpeedValue);
         hubSpeedSlider=findViewById(R.id.hubSpeedSlider);
         hydroDownImg = findViewById(R.id.hydroDownImg);
-        weedOnBtn = findViewById(R.id.fertiOnBtn);
-        weedOffBtn = findViewById(R.id.fertiOffBtn);
+        weedOnBtn = findViewById(R.id.weedOnBtn);
+        weedOffBtn = findViewById(R.id.weedOffBtn);
         forwardHubBtn = findViewById(R.id.forwardHubBtn);
         backHubMotor = findViewById(R.id.backHubMotor);
+        rotateRightImg=findViewById(R.id.rotateRightImg);
+        rotateLeftImg=findViewById(R.id.rotateLeftImg);
         refreshBtn = findViewById(R.id.refreshBtn);
 
         // Add press effect to all clickable items
@@ -82,16 +84,16 @@ public class weedRemoval extends AppCompatActivity {
         // FERTILIZER ON (Rotate 90°)
         // ---------------------------------------------------------
         weedOnBtn.setOnClickListener(v -> {
-            sendData("FERTILIZER_ON");
-            Toast.makeText(this, "Fertilizer On", Toast.LENGTH_SHORT).show();
+            sendData("WEED_ON");
+            Toast.makeText(this, "Weed On", Toast.LENGTH_SHORT).show();
         });
 
         // ---------------------------------------------------------
         // FERTILIZER OFF (Rotate 0°)
         // ---------------------------------------------------------
         weedOffBtn.setOnClickListener(v -> {
-            sendData("FERTILIZER_OFF");
-            Toast.makeText(this, "Fertilizer off", Toast.LENGTH_SHORT).show();
+            sendData("WEED_OFF");
+            Toast.makeText(this, "Weed off", Toast.LENGTH_SHORT).show();
         });
 
         // ---------------------------------------------------------
@@ -125,6 +127,32 @@ public class weedRemoval extends AppCompatActivity {
 
                 case MotionEvent.ACTION_UP:
                     sendData("STOP");
+                    break;
+            }
+            return true;
+        });
+
+        rotateLeftImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_90");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
+                    break;
+            }
+            return true;
+        });
+
+        rotateRightImg.setOnTouchListener((v, event) -> {
+            handlePressAnimation(v, event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    sendData("ROTATE_0");
+                    break;
+                case MotionEvent.ACTION_UP:
+                    sendData("stop_rotate");
                     break;
             }
             return true;

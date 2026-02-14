@@ -21,10 +21,10 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton weedRemoval, spraying, fertilizers, routing, planting, harvesting, seeding, rotateWheel;
+    ImageButton weedRemoval, spraying, fertilizers, routing, planting, harvesting, seeding, rotateWheel,refreshBtn;
 
     TextView bluetoothTxt;
-    Button testingBtn,refreshBtn;
+    Button testingBtn;
 
     // Bluetooth
 //    private static final String ESP32_MAC_ADDRESS = "00:4B:12:EF:2C:56"; // <-- Replace with your ESP32's MAC
