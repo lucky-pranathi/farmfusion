@@ -109,7 +109,7 @@
                 android:padding="10dp">
 
                 <Button
-                    android:id="@+id/fertiOnBtn"
+                    android:id="@+id/harvestOnBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="On"
@@ -117,7 +117,7 @@
                     android:layout_marginRight="5dp"
                     android:backgroundTint="@color/btnBack"/>
                 <Button
-                    android:id="@+id/fertiOffBtn"
+                    android:id="@+id/harvestOffBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Off"

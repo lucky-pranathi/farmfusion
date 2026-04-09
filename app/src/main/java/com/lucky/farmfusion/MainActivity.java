@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         planting = findViewById(R.id.planting);
         harvesting = findViewById(R.id.harvesting);
         seeding = findViewById(R.id.seeding);
-        rotateWheel = findViewById(R.id.rotateWheel);
+//        rotateWheel = findViewById(R.id.rotateWheel);
         testingBtn=findViewById(R.id.testingBtn);
 
         // Set initial status
@@ -108,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        rotateWheel.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, com.lucky.farmfusion.rotateWheels.class);
-            startActivity(intent);
-        });
+//        rotateWheel.setOnClickListener(v -> {
+//            Intent intent = new Intent(MainActivity.this, com.lucky.farmfusion.rotateWheels.class);
+//            startActivity(intent);
+//        });
         testingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
